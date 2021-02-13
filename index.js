@@ -11,17 +11,6 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-const errorMsg = [
-    "You win! Rock beats scissors",
-    "You win! Scissors beats paper",
-    "You win! Paper beats rock",
-    "You lose! Rock beats scissors",
-    "You lose! Scissors beats paper",
-    "You lose! Paper beats rock",
-    "It's a tie!"
-]
-
-// attempt to refactor into reference object
 const outcomeMsg = {
     rockWin: "You win! Rock beats scissors",
     rockLose: "You lose! Paper beats rock",
@@ -34,22 +23,22 @@ const outcomeMsg = {
 
 function singleRoundRPS(playerSelection, computerSelection) {
     if (playerSelection === "rock" && computerSelection === "scissors") {
-        alert(outcomeMsg.rockWin);
+        return (outcomeMsg.rockWin);
     } else if (playerSelection === "rock" && computerSelection === "paper") {
-        alert(outcomeMsg.rockLose);
+        return (outcomeMsg.rockLose);
     } else if (playerSelection === "paper" && computerSelection === "rock") {
-        alert(outcomeMsg.paperWin);
+        return (outcomeMsg.paperWin);
     } else if (playerSelection === "paper" && computerSelection === "scissors") {
-        alert(outcomeMsg.paperLose);
+        return (outcomeMsg.paperLose);
     } else if (playerSelection === "scissors" && computerSelection === "rock") {
-        alert(outcomeMsg.scissorsLose);
+        return (outcomeMsg.scissorsLose);
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        alert(outcomeMsg.scissorsWin);
+        return (outcomeMsg.scissorsWin);
     } else if (playerSelection === computerSelection) {
-        alert(outcomeMsg.tie);
+        return (outcomeMsg.tie);
     } 
     else {
-        alert(`player: ${playerSelection} comp: ${computerSelection}`);
+        return (`player: ${playerSelection} comp: ${computerSelection}`);
     }
 }
 
@@ -77,5 +66,6 @@ function getValidFmPlayer() {
     }
 }
 
-
-singleRoundRPS(askPlayer(), "rock");
+const playerSelection = askPlayer();
+const computerSelection = computerPlay();
+console.log(singleRoundRPS(playerSelection, computerSelection));
