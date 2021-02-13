@@ -83,12 +83,23 @@ let playerWins = 0;
 let computerWins = 0;
 let gameRound = 0;
 
-for (gameRound; gameRound < 5; gameRound++) {
-    const playerSelection = askPlayer();
-    const computerSelection = computerPlay();
-    singleRoundRPS(playerSelection, computerSelection);
-    console.log(`Player wins: ${playerWins} || Computer wins: ${computerWins}`);
+function play5Rounds() {
+    
+    for (gameRound; gameRound < 5; gameRound++) {
+        const playerSelection = askPlayer();
+        const computerSelection = computerPlay();
+        singleRoundRPS(playerSelection, computerSelection);
+        console.log(`Player wins: ${playerWins} || Computer wins: ${computerWins}`);
+    }
+
+    let finalOutcome = playerWins > computerWins ? "player wins" :
+        playerWins < computerWins ? "computer wins" :
+        "guess it's a tie";  
+
+    console.log(`Final score: ${finalOutcome}`);
 }
+
+play5Rounds();
 
 // x create new function game()
     // x initialize new variables for user & computer win counts
