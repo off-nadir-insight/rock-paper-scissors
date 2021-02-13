@@ -1,12 +1,3 @@
-
-/*
-COMPLETE
-
-// randomly return 'rock', 'paper', 'scissors'
-    // randomly pick from array: ['rock', 'paper', 'scissors']
-        // random number between 0-2 and return that element of the array
-
-*/
 const arr = ['rock', 'paper', 'scissors'];
 
 // return random element from array 'arr'
@@ -20,24 +11,6 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-// print area for display:
-// console.log(computerPlay(arr));
-
-/*
-FOCUS:
-// play a round of rock paper scissors
-    // x ask user "provide your move" and store the answer in "playerSelection"
-        // x make case insensitive (rock, ROCK, rOcK, etc)
-        // return error message if not valid selection
-            // 
-    // x generate computer play as "computerSelection"
-    // compare playerSelection to computerSelection to determine winner
-        // x win/lose scenarios
-        // x tie
-        // invalid
-    // x return the outcome
-*/
-
 const errorMsg = [
     "You win! Rock beats scissors",
     "You win! Scissors beats paper",
@@ -48,24 +21,35 @@ const errorMsg = [
     "It's a tie!"
 ]
 
+// attempt to refactor into reference object
+const outcomeMsg = {
+    rockWin: "You win! Rock beats scissors",
+    rockLose: "You lose! Paper beats rock",
+    paperWin: "You win! Paper beats rock",
+    paperLose: "You lose! Scissors beats paper",
+    scissorsWin: "You win! Scissors beats paper",
+    scissorsLose: "You lose! Rock beats scissors",
+    tie: "It's a tie!"
+}
+
 function singleRoundRPS(playerSelection, computerSelection) {
     if (playerSelection === "rock" && computerSelection === "scissors") {
-        alert(errorMsg[0])
+        alert(outcomeMsg.rockWin);
     } else if (playerSelection === "rock" && computerSelection === "paper") {
-        alert(errorMsg[5])
+        alert(outcomeMsg.rockLose);
     } else if (playerSelection === "paper" && computerSelection === "rock") {
-        alert(errorMsg[2]);
+        alert(outcomeMsg.paperWin);
     } else if (playerSelection === "paper" && computerSelection === "scissors") {
-        alert(errorMsg[4]);
+        alert(outcomeMsg.paperLose);
     } else if (playerSelection === "scissors" && computerSelection === "rock") {
-        alert(errorMsg[3]);
+        alert(outcomeMsg.scissorsLose);
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        alert(errorMsg[1]);
+        alert(outcomeMsg.scissorsWin);
     } else if (playerSelection === computerSelection) {
-        alert(errorMsg[6]);
+        alert(outcomeMsg.tie);
     } 
     else {
-        alert(`player: ${playerSelection} comp: ${computerSelection}`)
+        alert(`player: ${playerSelection} comp: ${computerSelection}`);
     }
 }
 
@@ -94,4 +78,4 @@ function getValidFmPlayer() {
 }
 
 
-singleRoundRPS(askPlayer(), computerPlay());
+singleRoundRPS(askPlayer(), "rock");
