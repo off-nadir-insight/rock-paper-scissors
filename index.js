@@ -1,4 +1,12 @@
 const arr = ['rock', 'paper', 'scissors'];
+let playerWins = 0;
+let computerWins = 0;
+let gameRound = 0;
+
+/*
+    =========================================
+    computer's move
+*/
 
 // return random element from array 'arr'
 function computerPlay() {
@@ -11,6 +19,28 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
+/*
+    =========================================
+    player's move
+*/
+
+// prompt & return player's move in lowercase format
+function askPlayer() {
+    let play = prompt('Rock, Paper, or Scissors?')
+    play = play.toLowerCase();
+    if (play === "rock" || play === "paper" || play === "scissors") {
+        return play;
+    } else {
+        console.error("invalid selection");
+        computerWins++;
+    }
+}
+
+/*
+    =========================================
+    organized possible outcome messaging into object
+*/
+
 const outcomeMsg = {
     rockWin: "You win! Rock beats scissors",
     rockLose: "You lose! Paper beats rock",
@@ -20,6 +50,11 @@ const outcomeMsg = {
     scissorsLose: "You lose! Rock beats scissors",
     tie: "It's a tie!"
 }
+
+/*
+    =========================================
+    single game
+*/
 
 function singleRoundRPS(playerSelection, computerSelection) {
     if (playerSelection === "rock" && computerSelection === "scissors") {
@@ -48,40 +83,11 @@ function singleRoundRPS(playerSelection, computerSelection) {
     }
 }
 
-// prompt & return player's move in lowercase format
-function askPlayer() {
-    let play = prompt('Rock, Paper, or Scissors?')
-    play = play.toLowerCase();
-    if (play === "rock" || play === "paper" || play === "scissors") {
-        return play;
-    } else {
-        console.error("invalid selection");
-        computerWins++;
-    }
-}
-
-function getValidFmPlayer() {
-    let reply = askPlayer();
-    switch (reply) {
-        case "rock":
-        case "paper":
-        case "scissors":
-            return reply;
-            break;
-        default:
-            return "invalid selection";
-    }
-}
 
 /* 
-
-expand to 5 round game
-
+    =========================================
+    expand to 5 round game
 */ 
-
-let playerWins = 0;
-let computerWins = 0;
-let gameRound = 0;
 
 function play5Rounds() {
     
@@ -100,9 +106,3 @@ function play5Rounds() {
 }
 
 play5Rounds();
-
-// x create new function game()
-    // x initialize new variables for user & computer win counts
-    // x increment respective variable, dependent on outcome
-    // x display results via console.log
-    // x loop outcome 5 times
