@@ -23,22 +23,28 @@ const outcomeMsg = {
 
 function singleRoundRPS(playerSelection, computerSelection) {
     if (playerSelection === "rock" && computerSelection === "scissors") {
-        return (outcomeMsg.rockWin);
+        playerWins++;
+        console.log (outcomeMsg.rockWin);
     } else if (playerSelection === "rock" && computerSelection === "paper") {
-        return (outcomeMsg.rockLose);
+        computerWins++;
+        console.log (outcomeMsg.rockLose);
     } else if (playerSelection === "paper" && computerSelection === "rock") {
-        return (outcomeMsg.paperWin);
+        playerWins++;
+        console.log (outcomeMsg.paperWin);
     } else if (playerSelection === "paper" && computerSelection === "scissors") {
-        return (outcomeMsg.paperLose);
+        computerWins++;
+        console.log (outcomeMsg.paperLose);
     } else if (playerSelection === "scissors" && computerSelection === "rock") {
-        return (outcomeMsg.scissorsLose);
+        computerWins++;
+        console.log (outcomeMsg.scissorsLose);
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        return (outcomeMsg.scissorsWin);
+        playerWins++;
+        console.log (outcomeMsg.scissorsWin);
     } else if (playerSelection === computerSelection) {
-        return (outcomeMsg.tie);
+        console.log (outcomeMsg.tie);
     } 
     else {
-        return (`player: ${playerSelection} comp: ${computerSelection}`);
+        console.log (`player: ${playerSelection} comp: ${computerSelection}`);
     }
 }
 
@@ -50,6 +56,7 @@ function askPlayer() {
         return play;
     } else {
         console.error("invalid selection");
+        computerWins++;
     }
 }
 
@@ -66,6 +73,25 @@ function getValidFmPlayer() {
     }
 }
 
-const playerSelection = askPlayer();
-const computerSelection = computerPlay();
-console.log(singleRoundRPS(playerSelection, computerSelection));
+/* 
+
+expand to 5 round game
+
+*/ 
+
+let playerWins = 0;
+let computerWins = 0;
+let gameRound = 0;
+
+for (gameRound; gameRound < 5; gameRound++) {
+    const playerSelection = askPlayer();
+    const computerSelection = computerPlay();
+    singleRoundRPS(playerSelection, computerSelection);
+    console.log(`Player wins: ${playerWins} || Computer wins: ${computerWins}`);
+}
+
+// x create new function game()
+    // x initialize new variables for user & computer win counts
+    // x increment respective variable, dependent on outcome
+    // x display results via console.log
+    // x loop outcome 5 times
