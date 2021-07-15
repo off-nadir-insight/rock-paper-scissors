@@ -105,4 +105,18 @@ function play5Rounds() {
     console.log(`Final score: ${finalOutcome}`);
 }
 
-play5Rounds();
+// play5Rounds();
+
+function iconHover(event, content) {
+  event.target.textContent = content
+}
+
+const btnRock = document.getElementById("btn--rock")
+btnRock.addEventListener('mouseenter', e => iconHover(e, "🪨"))
+btnRock.addEventListener('mouseout', e => iconHover(e, "Rock"))
+const btnPaper = document.getElementById("btn--paper")
+btnPaper.addEventListener('mouseenter', e => iconHover(e, "🧾"))
+btnPaper.addEventListener('mouseout', e => iconHover(e, "Paper"))
+const btnScissors = document.getElementById("btn--scissors")
+btnScissors.addEventListener('mouseenter', e => iconHover(e, "✂️"))
+btnScissors.addEventListener('mouseout', e => iconHover(e, "Rock"))

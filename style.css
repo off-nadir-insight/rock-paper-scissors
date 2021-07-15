@@ -1,0 +1,45 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #f8f8f8;
+  color: #333333;
+  font-family: Helvetica, sans-serif;
+}
+
+#container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.scores {
+  display: flex;
+  justify-content: space-between;
+}
+
+.controls button {
+  font-size: 1.3rem;
+  width: 200px;
+  height: 50px;
+  margin: 2rem;
+  padding: .5em 1.5em;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: all 500ms ease-in-out;
+}
+
+.controls button:hover,
+.controls button:focus {
+  color: white;
+  background-color: #555555;
+}
