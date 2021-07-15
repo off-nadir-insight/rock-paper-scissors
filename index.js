@@ -62,11 +62,6 @@ function runTurn(event) {
   checkGameOver()
 }
 
-/* set up buttons to progress game */
-buttons.forEach(btn => {
-  btn.addEventListener("click", runTurn)
-})
-
 /*    computer's move     */
 
 // return random element from array 'arr'
@@ -122,3 +117,8 @@ function singleRoundRPS(playerSelection, computerSelection) {
       console.log('unexpected outcome')
     }
 }
+
+/* set up buttons to progress game */
+buttons.forEach(btn => {
+  btn.addEventListener("click", runTurn)
+})
