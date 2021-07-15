@@ -1,8 +1,10 @@
+/* game settings */
 const arr = ['rock', 'paper', 'scissors'];
 let playerWins = "0";
 let computerWins = "0";
-// let gameRound = 0;
+const victoryCondition = 2;
 
+/* DOM variables */
 const btnRock = document.getElementById("btn--rock")
 const btnPaper = document.getElementById("btn--paper")
 const btnScissors = document.getElementById("btn--scissors")
@@ -35,17 +37,19 @@ function resetGame() {
   modal.style.display = "none"
   playerWins = "0"
   computerWins = "0"
+  turnDisplay.textContent = "---"
   updateDisplay()
 }
 
 function clickOutsideModal(e) {
   if (e.target === modal || e.target === closeText) {
     resetGame()
+    window.removeEventListener('click', clickOutsideModal)
   }
 }
 
 function checkGameOver() {
-  if (playerWins >= 5 || computerWins >= 5) {
+  if (playerWins >= victoryCondition || computerWins >= victoryCondition) {
     endGameAnnounce()
   }
 }
