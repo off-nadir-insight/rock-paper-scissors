@@ -1,7 +1,67 @@
 const arr = ['rock', 'paper', 'scissors'];
-let playerWins = 0;
-let computerWins = 0;
-let gameRound = 0;
+let playerWins = "0";
+let computerWins = "0";
+// let gameRound = 0;
+
+const btnRock = document.getElementById("btn--rock")
+const btnPaper = document.getElementById("btn--paper")
+const btnScissors = document.getElementById("btn--scissors")
+const buttons = document.querySelectorAll("button")
+const playerScore = document.querySelector("#playerScore")
+const computerScore = document.querySelector("#computerScore")
+const turnDisplay = document.querySelector('#turnDisplay')
+const modal = document.querySelector("#simpleModal")
+const gameOverText = document.querySelector("#gameOverText")
+const modalContent = document.querySelector(".modal-content")
+const closeText = document.querySelector("#closeText")
+
+function updateDisplay() {
+  playerScore.textContent = playerWins
+  computerScore.textContent = computerWins
+}
+
+function endGameAnnounce() {
+  if (playerWins > computerWins) {
+    modal.style.display = "block"
+    gameOverText.textContent = 'player wins!'
+  } else if (computerWins > playerWins) {
+    modal.style.display = "block"
+    gameOverText.textContent = 'computer wins!'
+  }
+  window.addEventListener('click', clickOutsideModal)
+}
+
+function resetGame() {
+  modal.style.display = "none"
+  playerWins = "0"
+  computerWins = "0"
+  updateDisplay()
+}
+
+function clickOutsideModal(e) {
+  if (e.target === modal || e.target === closeText) {
+    resetGame()
+  }
+}
+
+function checkGameOver() {
+  if (playerWins >= 5 || computerWins >= 5) {
+    endGameAnnounce()
+  }
+}
+
+function runTurn(event) {
+  const computerSelection = computerPlay()
+  const playerSelection = event.target.dataset.value
+  singleRoundRPS(playerSelection, computerSelection)
+  updateDisplay()
+  checkGameOver()
+}
+
+/* set up buttons to progress game */
+buttons.forEach(btn => {
+  btn.addEventListener("click", runTurn)
+})
 
 /*
     =========================================
@@ -25,16 +85,16 @@ function getRandomInt(max) {
 */
 
 // prompt & return player's move in lowercase format
-function askPlayer() {
-    let play = prompt('Rock, Paper, or Scissors?')
-    play = play.toLowerCase();
-    if (play === "rock" || play === "paper" || play === "scissors") {
-        return play;
-    } else {
-        console.error("invalid selection");
-        computerWins++;
-    }
-}
+// function askPlayer() {
+//     let play = prompt('Rock, Paper, or Scissors?')
+//     play = play.toLowerCase();
+//     if (play === "rock" || play === "paper" || play === "scissors") {
+//         return play;
+//     } else {
+//         console.error("invalid selection");
+//         computerWins++;
+//     }
+// }
 
 /*
     =========================================
@@ -56,30 +116,41 @@ const outcomeMsg = {
     single game
 */
 
+function updateTurnDisplay(player, computer, turnMesg) {
+  turnDisplay.textContent = `You chose ${player}, the computer chose ${computer} -- ${turnMesg}`
+}
+
 function singleRoundRPS(playerSelection, computerSelection) {
     if (playerSelection === "rock" && computerSelection === "scissors") {
         playerWins++;
-        console.log (outcomeMsg.rockWin);
+        // console.log (outcomeMsg.rockWin);
+        updateTurnDisplay(playerSelection, computerSelection, outcomeMsg.rockWin)
     } else if (playerSelection === "rock" && computerSelection === "paper") {
         computerWins++;
-        console.log (outcomeMsg.rockLose);
+        // console.log (outcomeMsg.rockLose);
+        updateTurnDisplay(playerSelection, computerSelection, outcomeMsg.rockLose);
     } else if (playerSelection === "paper" && computerSelection === "rock") {
         playerWins++;
-        console.log (outcomeMsg.paperWin);
+        // console.log (outcomeMsg.paperWin);
+        updateTurnDisplay(playerSelection, computerSelection, outcomeMsg.paperWin);
     } else if (playerSelection === "paper" && computerSelection === "scissors") {
         computerWins++;
-        console.log (outcomeMsg.paperLose);
+        // console.log (outcomeMsg.paperLose);
+        updateTurnDisplay(playerSelection, computerSelection, outcomeMsg.paperLose);
     } else if (playerSelection === "scissors" && computerSelection === "rock") {
         computerWins++;
-        console.log (outcomeMsg.scissorsLose);
+        // console.log (outcomeMsg.scissorsLose);
+        updateTurnDisplay(playerSelection, computerSelection, outcomeMsg.scissorsLose);
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
         playerWins++;
-        console.log (outcomeMsg.scissorsWin);
+        // console.log (outcomeMsg.scissorsWin);
+        updateTurnDisplay(playerSelection, computerSelection, outcomeMsg.scissorsWin);
     } else if (playerSelection === computerSelection) {
-        console.log (outcomeMsg.tie);
+        // console.log (outcomeMsg.tie);
+        updateTurnDisplay(playerSelection, computerSelection, outcomeMsg.tie);
     } 
     else {
-        console.log (`player: ${playerSelection} comp: ${computerSelection}`);
+        // console.log (`player: ${playerSelection} comp: ${computerSelection}`);
     }
 }
 
@@ -89,34 +160,20 @@ function singleRoundRPS(playerSelection, computerSelection) {
     expand to 5 round game
 */ 
 
-function play5Rounds() {
+// function play5Rounds() {
     
-    for (gameRound; gameRound < 5; gameRound++) {
-        const playerSelection = askPlayer();
-        const computerSelection = computerPlay();
-        singleRoundRPS(playerSelection, computerSelection);
-        console.log(`Player wins: ${playerWins} || Computer wins: ${computerWins}`);
-    }
+//     for (gameRound; gameRound < 5; gameRound++) {
+//         const playerSelection = askPlayer();
+//         const computerSelection = computerPlay();
+//         singleRoundRPS(playerSelection, computerSelection);
+//         console.log(`Player wins: ${playerWins} || Computer wins: ${computerWins}`);
+//     }
 
-    let finalOutcome = playerWins > computerWins ? "player wins" :
-        playerWins < computerWins ? "computer wins" :
-        "guess it's a tie";  
+//     let finalOutcome = playerWins > computerWins ? "player wins" :
+//         playerWins < computerWins ? "computer wins" :
+//         "guess it's a tie";  
 
-    console.log(`Final score: ${finalOutcome}`);
-}
+//     console.log(`Final score: ${finalOutcome}`);
+// }
 
 // play5Rounds();
-
-function iconHover(event, content) {
-  event.target.textContent = content
-}
-
-const btnRock = document.getElementById("btn--rock")
-btnRock.addEventListener('mouseenter', e => iconHover(e, "🪨"))
-btnRock.addEventListener('mouseout', e => iconHover(e, "Rock"))
-const btnPaper = document.getElementById("btn--paper")
-btnPaper.addEventListener('mouseenter', e => iconHover(e, "🧾"))
-btnPaper.addEventListener('mouseout', e => iconHover(e, "Paper"))
-const btnScissors = document.getElementById("btn--scissors")
-btnScissors.addEventListener('mouseenter', e => iconHover(e, "✂️"))
-btnScissors.addEventListener('mouseout', e => iconHover(e, "Rock"))

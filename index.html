@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock-Paper-Scissors!</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" 
+      type="image/png" 
+      href="./favicon.png">
 </head>
 <body>
     <main id="container">
@@ -13,17 +16,27 @@
         <h1>Rock Paper Scissors</h1>
         <h2>The score is:</h2>
         <div class="scores">
-          <h3>Player: <span id="playerScore">0</span></h3>
-          <h3>Computer: <span id="computerScore">0</span></h3>
+          <h3>Player: <span id="playerScore">-</span></h3>
+          <h3>Computer: <span id="computerScore">-</span></h3>
         </div>
       </div>
 
       <div class="controls">
-        <button id="btn--rock">Rock</button>
-        <button id="btn--paper">Paper</button>
-        <button id="btn--scissors">Scissors</button>
+        <button data-value="rock" id="btn--rock">Rock</button>
+        <button data-value="paper" id="btn--paper">Paper</button>
+        <button data-value="scissors" id="btn--scissors">Scissors</button>
       </div>
+
+      <div id="turnDisplay" class="turnDisplay"></div>
     </main>
+    <div class="modal" id="simpleModal">
+      <div class="modal-content">
+        <p></p>
+        <h2 id="gameOverText">game over text</h2>
+        <p><small id="closeText">click to close</small></p>
+      </div>
+    </div>
+    <script src="./js/handleMouseOverIcons.js"></script>
     <script src="index.js"></script>
 </body>
 </html>
